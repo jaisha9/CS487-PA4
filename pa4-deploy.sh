@@ -199,11 +199,8 @@ task4() {
   section "Task 4: Function App container deployment"
   ensure_rg_storage_mi
 
-  info "Rebuilding and pushing Function image"
-  docker build --platform linux/amd64 -t func-app:latest ./function-app
-  az acr login --name "$ACR"
-  docker tag func-app:latest "$IMG_FUNC"
-  docker push "$IMG_FUNC"
+  info "Building and pushing Function image in ACR"
+  az acr build --registry "$ACR" --image func-app:v1 ./function-app
 
   ACR_USER="$(az acr credential show -n "$ACR" --query username -o tsv)"
   ACR_PASS="$(az acr credential show -n "$ACR" --query "passwords[0].value" -o tsv)"
@@ -221,10 +218,10 @@ task4() {
       --functions-version 4 \
       --runtime python \
       --runtime-version 3.11 \
-      --deployment-container-image-name "$IMG_FUNC" \
-      --docker-registry-server-url "https://${ACR_SERVER}" \
-      --docker-registry-server-user "$ACR_USER" \
-      --docker-registry-server-password "$ACR_PASS" \
+      --image "$IMG_FUNC" \
+      --registry-server "$ACR_SERVER" \
+      --registry-username "$ACR_USER" \
+      --registry-password "$ACR_PASS" \
       --assign-identity "$MI_RESOURCE_ID" \
       --output table
   else
