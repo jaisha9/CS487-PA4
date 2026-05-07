@@ -286,23 +286,7 @@ This shows all the major resources in the group, including App Service, Function
 
 ### Evidence 8.1: Architecture Diagram
 
-```mermaid
-flowchart TD
-    github[GitHub fork] --> deploy[App Service Deployment Center]
-    deploy --> web[App Service Web App<br/>pa4-27100246]
-    browser[User browser] --> web
-    web -->|FUNCTION_START_URL| func[Durable Function App<br/>pa4-27100246-func]
-    func -->|validate_activity| aks[AKS validate-api<br/>pa4-27100246]
-    func -->|report_activity creates job| aci[Azure Container Instance<br/>report-job]
-    aci -->|uploads PDF| blob[Blob Storage<br/>pa427100246/reports]
-    acr[Azure Container Registry<br/>pa427100246] --> func
-    acr --> aks
-    acr --> aci
-    mi[User-assigned Managed Identity<br/>mi-pa4-27100246] --> func
-    mi --> aci
-    mi --> blob
-    mi --> rg[Resource Group IAM<br/>rg-sp26-27100246]
-```
+<img width="3423" height="2384" alt="architecture-diagram" src="https://github.com/user-attachments/assets/02820828-01cb-4383-bb42-1fe7c8b0609d" />
 
 This diagram matches the deployed pipeline. It shows GitHub, App Service, Durable Functions, AKS, ACI, Blob Storage, ACR, and managed identity.
 
