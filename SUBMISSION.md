@@ -49,7 +49,7 @@ Description: This proves the public App Service URL is serving the TaskFlow fron
 
 ![ACR overview](docs/05-acr-overview.png)
 
-Description: This shows Azure Container Registry `crpa427100246` in the PA4 resource group.
+Description: This shows Azure Container Registry `pa427100246` in the PA4 resource group.
 
 ### Evidence 2.2: Docker Builds
 

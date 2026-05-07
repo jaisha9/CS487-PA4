@@ -17,7 +17,7 @@ PLAN="pa4-${ROLLNUM}"
 WEBAPP="pa4-${ROLLNUM}"
 FUNCAPP="pa4-${ROLLNUM}-func"
 STORAGE="pa4${ROLLNUM}"
-ACR="crpa4${ROLLNUM}"
+ACR="pa4${ROLLNUM}"
 AKS="pa4-${ROLLNUM}"
 MI_NAME="mi-pa4-${ROLLNUM}"
 BLOB_CONTAINER="reports"
@@ -326,7 +326,7 @@ task5() {
     --docker-username="$ACR_USER" \
     --docker-password="$ACR_PASS"
 
-  sed "s|crpa4<rollnum>.azurecr.io|${ACR_SERVER}|g; s|<rollnum>|${ROLLNUM}|g" \
+  sed "s|pa4<rollnum>.azurecr.io|${ACR_SERVER}|g; s|<rollnum>|${ROLLNUM}|g" \
     validate-api/k8s/deployment.yaml > /tmp/validate-deployment.yaml
 
   kubectl apply -f /tmp/validate-deployment.yaml
