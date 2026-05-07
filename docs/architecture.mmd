@@ -1,0 +1,15 @@
+flowchart TD
+    github[GitHub fork] --> deploy[App Service Deployment Center]
+    deploy --> web[App Service Web App<br/>pa4-27100246]
+    browser[User browser] --> web
+    web -->|FUNCTION_START_URL| func[Durable Function App<br/>pa4-27100246-func]
+    func -->|validate_activity| aks[AKS validate-api<br/>pa4-27100246]
+    func -->|report_activity creates job| aci[Azure Container Instance<br/>report-job]
+    aci -->|uploads PDF| blob[Blob Storage<br/>pa427100246/reports]
+    acr[Azure Container Registry<br/>crpa427100246] --> func
+    acr --> aks
+    acr --> aci
+    mi[User-assigned Managed Identity<br/>mi-pa4-27100246] --> func
+    mi --> aci
+    mi --> blob
+    mi --> rg[Resource Group IAM<br/>rg-sp26-27100246]
