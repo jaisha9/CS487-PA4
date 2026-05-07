@@ -332,7 +332,9 @@ It also solves branching and retries in a clean way. The workflow can stop on in
 
 ### Question 8.5: Cost Review
 
-I did not have a dedicated Cost Management screenshot in the provided `docs/` set, so this answer is based on the deployed resources. The AKS cluster is the most expensive part because it keeps a node running all the time.
+<img width="1777" height="1038" alt="Screenshot 2026-05-08 at 2 34 17 AM" src="https://github.com/user-attachments/assets/f79a687a-f321-4051-b620-132f44d21fc9" />
+
+The AKS cluster is the most expensive part because it keeps a node running all the time.
 
 ACI is cheaper for the report step because it only runs when an order needs a PDF. App Service, storage, and ACR are smaller by comparison in this setup.
 
